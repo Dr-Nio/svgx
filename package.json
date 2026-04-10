@@ -1,5 +1,5 @@
 {
-	"name": "svgx",
+	"name": "@dr-nio/svgx",
 	"version": "1.0.0",
 	"description": "Modern SVG animation library - utility-first CSS + powerful JS API",
 	"type": "module",
