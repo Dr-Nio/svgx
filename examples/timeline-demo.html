@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>SVGX - Timeline Demo</title>
+    <style>
+      body {
+        font-family: system-ui;
+        padding: 2rem;
+        background: #f0fdf4;
+      }
+
+      .controls {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        justify-content: center;
+      }
+
+      button {
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      .play {
+        background: #22c55e;
+        color: white;
+      }
+
+      .pause {
+        background: #eab308;
+        color: white;
+      }
+
+      .reset {
+        background: #ef4444;
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div style="text-align: center">
+      <h1>Complex Timeline Sequence</h1>
+      <svg width="500" height="300" viewBox="0 0 500 300">
+        <rect id="box1" x="50" y="100" width="60" height="60" fill="#3b82f6" opacity="0" />
+        <circle id="box2" cx="250" cy="130" r="30" fill="#e11d48" opacity="0" />
+        <path id="line" d="M380,130 L450,130" stroke="#10b981" stroke-width="6" stroke-linecap="round" />
+      </svg>
+      <div class="controls">
+        <button class="play" onclick="playTimeline()">▶ Play</button>
+        <button class="pause" onclick="pauseTimeline()">⏸ Pause</button>
+        <button class="reset" onclick="resetTimeline()">↺ Reset</button>
+      </div>
+    </div>
+
+    <script type="module">
+      import { timeline } from '../dist/svgx.es.js';
+
+      let currentTimeline = null;
+
+      window.playTimeline = () => {
+        if (currentTimeline) currentTimeline.kill();
+
+        currentTimeline = timeline({ repeat: 2, yoyo: true })
+          .add('#box1', { opacity: 1, transform: { x: 30, rotate: 45 } }, { duration: 500, easing: 'easeOutBack' })
+          .add('#box2', { opacity: 1, transform: { scale: 1.5 } }, { duration: 400, easing: 'easeOut' }, '-=0.3')
+          .add('#line', { draw: 1 }, { duration: 600, easing: 'easeInOut' }, '-=0.2')
+          .play();
+      };
+
+      window.pauseTimeline = () => {
+        if (currentTimeline) currentTimeline.pause();
+      };
+
+      window.resetTimeline = () => {
+        if (currentTimeline) {
+          currentTimeline.kill();
+          currentTimeline = null;
+        }
+        // Reset visually
+        document.querySelector('#box1').setAttribute('transform', '');
+        document.querySelector('#box1').style.opacity = '0';
+        document.querySelector('#box2').setAttribute('transform', '');
+        document.querySelector('#box2').style.opacity = '0';
+        document.querySelector('#line').style.strokeDashoffset = '70';
+      };
+    </script>
+  </body>
+
+</html>

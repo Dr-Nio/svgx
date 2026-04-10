@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>SVGX - Logo Animation</title>
+    <style>
+      body {
+        background: #0f172a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+      }
+
+      .logo-container {
+        background: #1e293b;
+        padding: 3rem;
+        border-radius: 2rem;
+      }
+
+      svg {
+        width: 300px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="logo-container">
+      <svg viewBox="0 0 200 200">
+        <circle id="circle-bg" cx="100" cy="100" r="80" fill="none" stroke="#3b82f6" stroke-width="8" />
+        <path id="logo-path" d="M70,100 L90,120 L130,70" fill="none" stroke="#60a5fa" stroke-width="6"
+          stroke-linecap="round" stroke-linejoin="round" />
+        <text id="logo-text" x="100" y="170" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="20"
+          opacity="0">SVGX</text>
+      </svg>
+    </div>
+
+    <script type="module">
+      import { timeline } from '../dist/svgx.es.js';
+
+      // Animate logo on load
+      window.addEventListener('load', () => {
+        timeline()
+          .add('#circle-bg', { draw: 1 }, { duration: 800, easing: 'easeOut' })
+          .add('#logo-path', { draw: 1 }, { duration: 600, easing: 'easeOutBack' }, '-=0.4')
+          .add('#logo-text', { opacity: 1, transform: { y: 10 } }, { duration: 400, easing: 'easeOut' }, '-=0.2')
+          .play();
+      });
+    </script>
+  </body>
+
+</html>

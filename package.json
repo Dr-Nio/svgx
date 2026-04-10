@@ -1,0 +1,55 @@
+{
+	"name": "svgx",
+	"version": "1.0.0",
+	"description": "Modern SVG animation library - utility-first CSS + powerful JS API",
+	"type": "module",
+	"main": "./dist/svgx.umd.js",
+	"module": "./dist/svgx.es.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"import": "./dist/svgx.es.js",
+			"require": "./dist/svgx.umd.js",
+			"types": "./dist/index.d.ts"
+		},
+		"./css": "./dist/svgx.css"
+	},
+	"files": [
+		"dist",
+		"src",
+		"README.md",
+		"LICENSE"
+	],
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build && npm run build:css",
+		"build:css": "node scripts/build-css.js",
+		"preview": "vite preview",
+		"type-check": "tsc --noEmit"
+	},
+	"keywords": [
+		"svg",
+		"animation",
+		"tailwind",
+		"gsap",
+		"drawing",
+		"morph",
+		"timeline",
+		"utility-first",
+		"typescript"
+	],
+	"author": "SVGX Contributors",
+	"license": "MIT",
+	"devDependencies": {
+		"typescript": "^5.0.0",
+		"vite": "^4.0.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/svgx/svgx"
+	},
+	"bugs": {
+		"url": "https://github.com/svgx/svgx/issues"
+	},
+	"homepage": "https://svgx.dev"
+}

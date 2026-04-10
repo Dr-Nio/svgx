@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SVGX - Basic Draw Animation</title>
+  <style>
+    body { font-family: system-ui; padding: 2rem; background: #f5f5f5; }
+    .demo { background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    svg { width: 400px; margin: 0 auto; display: block; }
+    button { margin-top: 1rem; padding: 0.5rem 1rem; background: #3b82f6; color: white; border: none; border-radius: 0.5rem; cursor: pointer; }
+  </style>
+  <link rel="stylesheet" href="../dist/svgx.css">
+</head>
+<body>
+  <div class="demo">
+    <h1>Path Drawing Animation</h1>
+    <svg viewBox="0 0 200 200">
+      <path id="heart" d="M100,180 L100,180 C40,120 20,80 50,50 C70,30 85,40 100,60 C115,40 130,30 150,50 C180,80 160,120 100,180Z" fill="none" stroke="#e11d48" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+    <button onclick="animateHeart()">Animate Heart</button>
+  </div>
+
+  <script type="module">
+    import { animate } from '../dist/svgx.es.js';
+
+    window.animateHeart = () => {
+      animate('#heart', {
+        draw: 1,
+        transform: { scale: 1.1, rotate: 10 }
+      }, {
+        duration: 1000,
+        easing: 'easeOutBack',
+        yoyo: true,
+        repeat: 1
+      });
+    };
+  </script>
+</body>
+</html>
