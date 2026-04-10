@@ -19,7 +19,7 @@ interface TimelineSegment {
 export class Timeline {
   private segments: TimelineSegment[] = [];
   private totalDuration = 0;
-  private repeat: number = 0;
+  private repeat: number | boolean = 0;
   private yoyo: boolean = false;
   private onComplete?: () => void;
   private controls: AnimationControl[] = [];
@@ -87,7 +87,7 @@ export class Timeline {
     }
     
     // Handle timeline repeat logic
-    if (this.repeat > 0 || this.repeat === true) {
+    if ((typeof this.repeat === 'number' && this.repeat > 0) || this.repeat === true) {
       const repeatCount = this.repeat === true ? Infinity : this.repeat;
       let iteration = 0;
       

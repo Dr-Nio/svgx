@@ -13,7 +13,6 @@ export type {
   Target,
   TransformValues,
   EasingFunction,
-  TimelineOptions,
 } from './types';
 
 // Utility exports
