@@ -15,10 +15,11 @@ export default defineConfig({
       external: [],
       output: {
         globals: {},
+        exports: 'named',          // ← fixes default export warning
       },
     },
     sourcemap: true,
-    minify: 'terser',
+    minify: 'esbuild',             // ← replaces 'terser' (no extra install)
   },
   resolve: {
     alias: {

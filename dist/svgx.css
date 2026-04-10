@@ -1,0 +1,87 @@
+/* SVGX Utility Classes */
+
+.svg-draw {
+  animation-name: svgx-draw;
+  animation-fill-mode: forwards;
+}
+
+/* Durations */
+.svg-duration-0 {
+  animation-duration: 0ms;
+}
+.svg-duration-75 {
+  animation-duration: 75ms;
+}
+.svg-duration-100 {
+  animation-duration: 100ms;
+}
+.svg-duration-150 {
+  animation-duration: 150ms;
+}
+.svg-duration-200 {
+  animation-duration: 200ms;
+}
+.svg-duration-300 {
+  animation-duration: 300ms;
+}
+.svg-duration-500 {
+  animation-duration: 500ms;
+}
+.svg-duration-700 {
+  animation-duration: 700ms;
+}
+.svg-duration-1000 {
+  animation-duration: 1000ms;
+}
+
+/* Delays */
+.svg-delay-0 {
+  animation-delay: 0ms;
+}
+.svg-delay-75 {
+  animation-delay: 75ms;
+}
+.svg-delay-100 {
+  animation-delay: 100ms;
+}
+.svg-delay-150 {
+  animation-delay: 150ms;
+}
+.svg-delay-200 {
+  animation-delay: 200ms;
+}
+.svg-delay-300 {
+  animation-delay: 300ms;
+}
+.svg-delay-500 {
+  animation-delay: 500ms;
+}
+.svg-delay-700 {
+  animation-delay: 700ms;
+}
+.svg-delay-1000 {
+  animation-delay: 1000ms;
+}
+
+/* Easings */
+.svg-ease-linear {
+  animation-timing-function: linear;
+}
+.svg-ease-in {
+  animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+.svg-ease-out {
+  animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+.svg-ease-in-out {
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes svgx-draw {
+  0% {
+    stroke-dashoffset: var(--svgx-length, 1000);
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
