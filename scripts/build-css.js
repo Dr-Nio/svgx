@@ -1,17 +1,34 @@
-// FILE: scripts/build-css.js
-
+// scripts/build-css.js (updated)
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
-import { generateCSS, defaultConfig } from '../src/styles/generateCss.js';  // ← now .js
+import { generateCSS, defaultConfig } from '../src/styles/generateCss.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const distDir = path.resolve(__dirname, '../dist');
+const distDir = path.resolve(process.cwd(), 'dist');
+if (!fs.existsSync(distDir)) fs.mkdirSync(distDir, { recursive: true });
 
-if (!fs.existsSync(distDir)) {
-  fs.mkdirSync(distDir, { recursive: true });
-}
-
+// Write CSS
 const css = generateCSS(defaultConfig);
-fs.writeFileSync(path.resolve(distDir, 'svgx.css'), css);
-console.log('✅ CSS generated at dist/svgx.css');
+fs.writeFileSync(path.join(distDir, 'svgx.css'), css);
+
+// Write initializer script
+const initScript = `// SVGX Auto-initializer for CSS utility classes
+(function() {
+  function initSVGX() {
+    document.querySelectorAll('.svg-draw').forEach(path => {
+      if (path.getTotalLength) {
+        const len = path.getTotalLength();
+        path.style.setProperty('--svgx-length', len);
+        path.style.strokeDasharray = len;
+        path.style.strokeDashoffset = len;
+      }
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSVGX);
+  } else {
+    initSVGX();
+  }
+})();
+`;
+fs.writeFileSync(path.join(distDir, 'svgx.init.js'), initScript);
+console.log('✅ CSS and initializer generated in dist/');

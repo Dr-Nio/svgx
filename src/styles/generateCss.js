@@ -34,6 +34,7 @@ export const defaultConfig = {
 export function generateCSS(config = defaultConfig) {
   let css = '/* SVGX Utility Classes */\n\n';
   
+  // Base draw class
   css += '.svg-draw {\n';
   css += '  animation-name: svgx-draw;\n';
   css += '  animation-fill-mode: forwards;\n';
@@ -66,7 +67,7 @@ export function generateCSS(config = defaultConfig) {
   }
   css += '\n';
   
-  // Keyframes
+  // Keyframes for draw animation
   css += '@keyframes svgx-draw {\n';
   css += '  0% {\n';
   css += '    stroke-dashoffset: var(--svgx-length, 1000);\n';

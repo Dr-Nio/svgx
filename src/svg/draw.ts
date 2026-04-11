@@ -1,7 +1,6 @@
 // FILE: src/svg/draw.ts
 
 import { getPathLength, setStrokeDashoffset } from '../utils/dom';
-import type { AnimationProperties, AnimationOptions } from '../types';
 
 export interface DrawAnimationState {
   element: SVGPathElement;
@@ -15,7 +14,11 @@ export function prepareDrawAnimation(
   targetDrawValue: number
 ): DrawAnimationState {
   const length = getPathLength(element);
-  const startOffset = length; // hidden state
+  // Set up the path so it starts fully hidden
+  element.style.strokeDasharray = `${length}`;
+  element.style.strokeDashoffset = `${length}`;
+  
+  const startOffset = length;
   const endOffset = length * (1 - targetDrawValue);
   return {
     element,

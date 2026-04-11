@@ -25,8 +25,8 @@ npm install svgx
 ## Or use CDN:
 
 ```bash
-<script src="https://unpkg.com/svgx@1.0.0/dist/svgx.umd.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/svgx@1.0.0/dist/svgx.css">
+<script src="https://unpkg.com/svgx@^1.0.0/dist/svgx.umd.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/svgx@^1.0.0/dist/svgx.css">
 ```
 
 ## Quick Start
@@ -165,8 +165,8 @@ MIT © SVGX Contributors
 ## CDN
 
 ```bash
-<script src="https://unpkg.com/svgx@1.0.0/dist/svgx.umd.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/svgx@1.0.0/dist/svgx.css">
+<script src="https://unpkg.com/svgx@^1.0.0/dist/svgx.umd.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/svgx@^1.0.0/dist/svgx.css">
 ```
 ## Basic Usage
 
